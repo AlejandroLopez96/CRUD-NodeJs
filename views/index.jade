@@ -1,0 +1,23 @@
+extends layout
+block contenido
+  div
+    h1(class="center yellow") Listado de usuarios
+    a(href="/formulario", class="btn-floating btn-small waves-effect waves-light blue") #[i(class="material-icons") add] 
+    table(class="striped")
+      tr
+        th Nombre
+        th Apellido
+        th Edad
+        th Pais
+        th
+        th
+      for u in usuarios
+        tr 
+          td #{u.nombre}
+          td #{u.apellido}
+          td #{u.edad}
+          td #{u.pais}
+          td.
+            #[form(action="modificar" method="POST") #[input(type="hidden" name="_id" value="#{u._id}" )] #[input(type="hidden" name="nombre" value="#{u.nombre}" )] #[input(type="hidden" name="apellido" value="#{u.apellido}" )] #[input(type="hidden" name="edad" value="#{u.edad}" )] #[input(type="hidden" name="pais" value="#{u.pais}" )] #[button(type="submit", class="btn-floating btn-small waves-effect waves-light orange") #[i(class="material-icons") mode_edit]]]
+          td.
+            #[form(action="borrar" method="POST") #[input(type="hidden" name="_id" value="#{u._id}" )] #[button(type="submit", class="btn-floating btn-small waves-effect waves-light red") #[i(class="material-icons") delete]]]
